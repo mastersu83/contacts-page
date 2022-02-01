@@ -13,6 +13,10 @@ export const isUserAuthAction = (accessToken) => ({
 export const logOutAction = () => ({
   type: "LOG_OUT",
 });
+export const loginError = (error) => ({
+  type: "LOGIN_ERROR",
+  payload: error,
+});
 
 export const isUserAuthThunk =
   (login, password, pathName) => async (dispatch) => {
@@ -24,9 +28,11 @@ export const isUserAuthThunk =
         })
         .then((resp) => {
           dispatch(isUserAuthAction(resp.data.access_token));
+          dispatch(loginError(false));
         });
     } catch (e) {
       console.log(e.message);
+      dispatch(loginError(true));
     }
   };
 

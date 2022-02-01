@@ -1,17 +1,19 @@
 import React from "react";
 import { Button, Divider, TextField } from "@mui/material";
 import ErrorPopup from "./ErrorPopup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isUserAuthThunk, logOutAction } from "../redux/actions/login_action";
 
 export const AuthField = () => {
   const dispatch = useDispatch();
-  const [loginErrorPopup, setLoginErrorPopup] = React.useState(false);
-  const [registerErrorPopup, setRegisterErrorPopup] = React.useState(false);
+  const [popupErrorText, setPopupErrorText] = React.useState("");
+  const [errorPopup, setErrorPopup] = React.useState(false);
   const [input, setInput] = React.useState({
     login: "",
     password: "",
   });
+
+  const loginError = useSelector((state) => state.login.loginError);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,15 +22,21 @@ export const AuthField = () => {
 
   const onLogging = () => {
     if (!input.login.length || !input.password.length) {
-      setLoginErrorPopup(true);
+      setPopupErrorText("Вы не зарегистрированны. Пройдите регистрацию");
+      setErrorPopup(true);
     } else {
       dispatch(isUserAuthThunk(input.login, input.password, "login"));
+      if (loginError) {
+        setPopupErrorText("Неверное имя пользователя или пароль");
+        setErrorPopup(true);
+      }
     }
   };
 
   const registered = () => {
     if (!input.login.length || !input.password.length) {
-      setRegisterErrorPopup(true);
+      setPopupErrorText("Оба поля должны быть заполнены");
+      setErrorPopup(true);
     } else {
       dispatch(isUserAuthThunk(input.login, input.password, "register"));
       dispatch(logOutAction());
@@ -59,30 +67,17 @@ export const AuthField = () => {
       />
       <Divider />
       <div className="check-buttons">
-        <Button
-          disabled={loginErrorPopup || registerErrorPopup}
-          onClick={onLogging}
-          variant="outlined"
-        >
+        <Button disabled={errorPopup} onClick={onLogging} variant="outlined">
           Войти
         </Button>
-        <Button
-          disabled={loginErrorPopup || registerErrorPopup}
-          onClick={registered}
-          variant="outlined"
-        >
+        <Button disabled={errorPopup} onClick={registered} variant="outlined">
           Регистрация
         </Button>
       </div>
       <ErrorPopup
-        text={"Вы не зарегистрированны. Пройдите регистрацию"}
-        closePopup={setLoginErrorPopup}
-        errorPopup={loginErrorPopup}
-      />
-      <ErrorPopup
-        text={"Оба поля должны быть заполнены"}
-        closePopup={setRegisterErrorPopup}
-        errorPopup={registerErrorPopup}
+        text={popupErrorText}
+        closePopup={setErrorPopup}
+        errorPopup={errorPopup}
       />
     </div>
   );
