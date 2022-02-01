@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "111",
+      "password": "111"
+    },
+    {
+      "id": 2,
+      "name": "222",
+      "password": "222"
+    },
+    {
+      "id": 3,
+      "name": "333",
+      "password": "333"
+    },
+    {
+      "id": 4,
+      "name": "444",
+      "password": "444"
+    },
+    {
+      "id": 5,
+      "name": "5",
+      "password": "555"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "name": "some comment",
+      "phone": 956465885,
+      "about": "Сосед",
+      "date": "22.01.2021"
+    },
+    {
+      "id": 2,
+      "name": "some comment",
+      "phone": 956465885,
+      "about": "Сосед",
+      "date": "22.01.2021"
+    },
+    {
+      "id": 3,
+      "name": "some comment",
+      "phone": 956465885,
+      "about": "Сосед",
+      "date": "22.01.2021"
+    },
+    {
+      "id": 4,
+      "name": "some comment",
+      "phone": 956465885,
+      "about": "Сосед",
+      "date": "22.01.2021"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
