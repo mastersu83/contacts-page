@@ -29,11 +29,7 @@ const Contacts = () => {
   };
 
   React.useEffect(() => {
-    dispatch(
-      getContactsThunk(
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc3RlciIsInBhc3N3b3JkIjoiMTIzIiwiaWF0IjoxNjQzODA2ODY0LCJleHAiOjE2NDM4MTA0NjR9.EYfBS4DuFMoFa9xpVRtyFgCI3vbXmHDHDZKHlKUeTVc"
-      )
-    );
+    dispatch(getContactsThunk(accessToken));
     if (accessToken) {
     }
   }, [accessToken]);

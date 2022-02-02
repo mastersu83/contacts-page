@@ -10,7 +10,7 @@ import {
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   editContactThunk,
   removeContactThunk,
@@ -18,7 +18,7 @@ import {
 
 export const Item = ({ number, name, phone, id }) => {
   const dispatch = useDispatch();
-  // const accessToken = useSelector((state) => state.login.isAuth);
+  const accessToken = useSelector((state) => state.login.isAuth);
   const [editContact, setEditContact] = React.useState(false);
   const [input, setInput] = React.useState({
     name: name,
@@ -30,23 +30,11 @@ export const Item = ({ number, name, phone, id }) => {
   };
 
   const removeContact = () => {
-    dispatch(
-      removeContactThunk(
-        id,
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc3RlciIsInBhc3N3b3JkIjoiMTIzIiwiaWF0IjoxNjQzODA2ODY0LCJleHAiOjE2NDM4MTA0NjR9.EYfBS4DuFMoFa9xpVRtyFgCI3vbXmHDHDZKHlKUeTVc"
-      )
-    );
+    dispatch(removeContactThunk(id, accessToken));
   };
 
   const deActiveEditMode = () => {
-    dispatch(
-      editContactThunk(
-        input.name,
-        input.phone,
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc3RlciIsInBhc3N3b3JkIjoiMTIzIiwiaWF0IjoxNjQzODA2ODY0LCJleHAiOjE2NDM4MTA0NjR9.EYfBS4DuFMoFa9xpVRtyFgCI3vbXmHDHDZKHlKUeTVc",
-        id
-      )
-    );
+    dispatch(editContactThunk(input.name, input.phone, accessToken, id));
     setEditContact(false);
   };
 

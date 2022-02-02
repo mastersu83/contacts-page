@@ -1,11 +1,11 @@
 import React from "react";
 import { Button, Divider, Paper, TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContactThunk } from "../redux/actions/contacts_action";
 
 const AddContactPopup = ({ openPopup, addContactPopup }) => {
   const dispatch = useDispatch();
-  // const accessToken = useSelector((state) => state.login.isAuth);
+  const accessToken = useSelector((state) => state.login.isAuth);
   const [input, setInput] = React.useState({
     name: "",
     phone: "",
@@ -13,13 +13,7 @@ const AddContactPopup = ({ openPopup, addContactPopup }) => {
 
   const addContact = () => {
     if (input.name.length && input.phone.length) {
-      dispatch(
-        addContactThunk(
-          input.name,
-          input.phone,
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc3RlciIsInBhc3N3b3JkIjoiMTIzIiwiaWF0IjoxNjQzODA2ODY0LCJleHAiOjE2NDM4MTA0NjR9.EYfBS4DuFMoFa9xpVRtyFgCI3vbXmHDHDZKHlKUeTVc"
-        )
-      );
+      dispatch(addContactThunk(input.name, input.phone, accessToken));
       openPopup();
     }
     setInput({ ...input, name: "", phone: "" });
