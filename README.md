@@ -1,3 +1,6 @@
+Необходимо клонировать и запустить [json-server] (https://github.com/xKOOOTx/fake-api-jwt-json-server)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
