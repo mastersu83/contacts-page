@@ -20,12 +20,23 @@ import { logOutAction } from "../redux/actions/login_action";
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const accessToken = useSelector((state) => state.login.isAuth);
+  const contacts = useSelector((state) => state.contacts);
+  const [addContactPopup, setAddContactPopup] = React.useState(false);
+
+  const handleContactPopup = () => {
+    setAddContactPopup(!addContactPopup);
+  };
+
   React.useEffect(() => {
-    if (state.login.isAuth) {
-      dispatch(getContactsThunk(state.login.isAuth));
+    dispatch(
+      getContactsThunk(
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc3RlciIsInBhc3N3b3JkIjoiMTIzIiwiaWF0IjoxNjQzODA2ODY0LCJleHAiOjE2NDM4MTA0NjR9.EYfBS4DuFMoFa9xpVRtyFgCI3vbXmHDHDZKHlKUeTVc"
+      )
+    );
+    if (accessToken) {
     }
-  }, [state.login.isAuth]);
+  }, [accessToken]);
 
   const logOut = () => {
     dispatch(logOutAction());
@@ -37,11 +48,13 @@ const Contacts = () => {
         <Paper className="header" elevation={0}>
           <h2>Список Контактов</h2>
           <span className="userName">Имя</span>
-          <Link to="/login">
+          <Link to="/">
             <LogoutIcon onClick={logOut} className="logOut" />
           </Link>
         </Paper>
-        <Button variant="outlined">Добавить</Button>
+        <Button onClick={handleContactPopup} variant="outlined">
+          Добавить
+        </Button>
         <br />
         <br />
         <Divider />
@@ -51,8 +64,6 @@ const Contacts = () => {
               <Typography className="item-text">№</Typography>
               <Typography className="item-text">Имя: </Typography>
               <Typography className="item-text">Телефон:</Typography>
-              <Typography className="item-text">Описание</Typography>
-              <Typography className="item-text">Дата</Typography>
               <div className="item-buttons d-flex">
                 <IconButton disabled={true}>
                   <EditIcon style={{ fontSize: 20 }} />
@@ -64,10 +75,23 @@ const Contacts = () => {
             </div>
           </ListItem>
           <Divider />
-          {state.contacts && state.contacts.map((c) => <Item key={c.id} />)}
+          {contacts &&
+            contacts.map((c, index) => (
+              <Item
+                key={c.id}
+                id={c.id}
+                name={c.name}
+                phone={c.phone}
+                number={index + 1}
+              />
+            ))}
         </List>
       </Paper>
-      <AddContactPopup />
+      <AddContactPopup
+        accessToken={accessToken}
+        openPopup={handleContactPopup}
+        addContactPopup={addContactPopup}
+      />
     </div>
   );
 };

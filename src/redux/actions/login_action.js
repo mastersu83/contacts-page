@@ -1,10 +1,5 @@
 import axios from "axios";
 
-const getUserAction = (user) => ({
-  type: "GET_USER",
-  payload: user,
-});
-
 export const isUserAuthAction = (accessToken) => ({
   type: "IS_USER_AUTH",
   payload: accessToken,
@@ -35,9 +30,3 @@ export const isUserAuthThunk =
       dispatch(loginError(true));
     }
   };
-
-export const getUserThunk = () => async (dispatch) => {
-  await axios.get("http://localhost:3001/users").then((res) => {
-    dispatch(getUserAction(res.data));
-  });
-};

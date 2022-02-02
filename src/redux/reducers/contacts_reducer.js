@@ -4,12 +4,13 @@ export const contacts_reducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_CONTACTS":
       return action.payload;
-    case "ADD_TASK":
-      let newTask = {
-        text: action.payload.text,
-        completed: action.payload.completed,
+    case "ADD_CONTACT":
+      let newContact = {
+        name: action.payload.name,
+        phone: action.payload.phone,
+        accessToken: action.payload.accessToken,
       };
-      return [...state, newTask];
+      return [...state, newContact];
 
     case "HANDLE_TASK_CHECK":
       return state.map((task) =>
