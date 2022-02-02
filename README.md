@@ -1,3 +1,18 @@
+# Чтобы заработала Авторизация:
+
+
+# Необходимо клонировать и запустить [json-server](https://github.com/xKOOOTx/fake-api-jwt-json-server)
+Установка:
+
+$ npm install
+$ npm run start-auth
+
+# Может понадобиться 
+npm audit fix
+
+Более подробно на [json-server](https://github.com/xKOOOTx/fake-api-jwt-json-server)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
