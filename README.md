@@ -2,7 +2,15 @@
 
 
 # Необходимо клонировать и запустить [json-server](https://github.com/xKOOOTx/fake-api-jwt-json-server)
-# как в описании репозитория. 
+Установка:
+
+$ npm install
+$ npm run start-auth
+
+# Может понадобиться 
+npm audit fix
+
+Более подробно на [json-server](https://github.com/xKOOOTx/fake-api-jwt-json-server)
 
 
 # Getting Started with Create React App
