@@ -5,7 +5,7 @@
 
 # Чтобы заработала Авторизация:
 
-Необходимо клонировать и запустить [json-server](https://github.com/mastersu83/json-server-new.git)
+Необходимо клонировать и запустить [json-server](https://github.com/mastersu83/server)
 
 Установка:
 
