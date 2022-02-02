@@ -1,4 +1,8 @@
-Необходимо клонировать и запустить [json-server] (https://github.com/xKOOOTx/fake-api-jwt-json-server)
+# Чтобы заработала Авторизация:
+
+
+# Необходимо клонировать и запустить [json-server](https://github.com/xKOOOTx/fake-api-jwt-json-server)
+# как в описании репозитория. 
 
 
 # Getting Started with Create React App
