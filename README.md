@@ -6,6 +6,7 @@
 # Чтобы заработала Авторизация:
 
 Необходимо клонировать и запустить [json-server](https://github.com/mastersu83/json-server-new.git)
+
 Установка:
 
 $ npm install
